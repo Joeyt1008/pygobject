@@ -8,9 +8,12 @@ python:
 install:
   - uname -m
   - sudo apt-get -y install python3-pip
+  - sudo apt-get -y install gcc
+  - sudo apt-get -y install libffi-dev 
+  - sudo pip3 install cffi
   - sudo apt-get -y install python3-dev python3.8-dev 
   - sudo apt -y install libpython3.8-dev
-  - sudo python3 -m pip install --upgrade pip setuptools wheel\
+  - sudo python3 -m pip install --upgrade pip setuptools wheel
   - sudo pip3 install testresources
   - sudo apt install -y libgirepository1.0-dev
   - sudo apt install -y libcairo2 libcairo2-dev libglib2.0-dev libffi-dev libcairo-gobject2
