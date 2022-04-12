@@ -31,7 +31,7 @@ export CFLAGS="-coverage -ftest-coverage -fprofile-arcs -Werror"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PKG_CONFIG_PATH="$(python3 -c 'import sys; sys.stdout.write(sys.prefix)')/lib/pkgconfig"
 
-meson _build -Dpython="$(which python)"
+meson _build -Dpython="$(which python3)"
 ninja -C _build
 xvfb-run -a meson test --suite pygobject --timeout-multiplier 4 -C _build -v
 rm -Rf _build
