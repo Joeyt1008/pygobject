@@ -2,12 +2,13 @@ language: python
 dist: focal
 arch:
   - arm64
+  - amd64
 
 python:
   - "3.8"
 install:
   - uname -m
-  - sudo apt-get -y install python3-pip
+  - sudo apt-get -y install python3-pip python3-dev
   - sudo python3 -m pip install --upgrade pip setuptools wheel\
   - sudo pip3 install testresources
   - sudo apt install -y libgirepository1.0-dev
