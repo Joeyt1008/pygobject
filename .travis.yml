@@ -11,11 +11,8 @@ install:
   - sudo python3 -m pip install --upgrade pip setuptools wheel\
   - sudo pip3 install testresources
   - sudo apt install -y libgirepository1.0-dev
-  - sudo apt install -y libcairo2 libcairo2-dev
+  - sudo apt install -y libcairo2 libcairo2-dev libglib2.0-dev libglib2.0-dev libffi-dev
   - sudo pip3 install Ninja 
-  - sudo pip3 install pkgconfig
-  - sudo pkg-config --cflags glib-2.0
-  - sudo pkg-config --libs glib-2.0
   - sudo apt-get -y install xvfb
   - sudo python3 setup.py install
   
