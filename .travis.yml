@@ -1,0 +1,20 @@
+language: python
+dist: xenial
+arch:
+  - arm64
+
+python:
+  - "3.8"
+install:
+  - uname -m
+  - sudo apt-get -y install python3-pip
+  - sudo python3 -m pip install --upgrade pip setuptools wheel\
+  - sudo pip3 install testresources
+  - sudo apt install -y libgirepository1.0-dev
+  - sudo apt install -y libcairo2 libcairo2-dev
+  - sudo pip3 install Ninja
+  - sudo apt-get -y install xvfb
+  - sudo python3 setup.py install
+  
+script:
+  - sudo bash -x ./.gitlab-ci/test-docker.sh
