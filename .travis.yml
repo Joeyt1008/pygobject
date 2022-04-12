@@ -11,8 +11,6 @@ install:
   - sudo apt-get update
   - sudo apt install -y python3
   - sudo apt-get -y install vim git python3-pip
-  - sudo apt-get -y install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt-get update
-  - sudo apt install -y python3.6-venv && sudo python3.6 -m venv venv36 && source venv36/bin/activate
   - sudo apt-get -y install python3-pip gcc build-essential libffi-dev python3-dev python3.8-dev libpython3.8-dev
   - sudo python3 -m pip install --upgrade pip setuptools wheel
   - sudo apt install -y libgirepository1.0-dev libcairo2 libcairo2-dev libglib2.0-dev libffi-dev libcairo-gobject2 libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
