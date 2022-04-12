@@ -2,10 +2,10 @@
 
 set -e
 
-python --version
+python3 --version
 
-PYVER=$(python -c "import sys; sys.stdout.write('.'.join(map(str, sys.version_info[:2])))")
-PYIMPL=$(python -c "import sys, platform; sys.stdout.write(platform.python_implementation())")
+PYVER=$(python3 -c "import sys; sys.stdout.write('.'.join(map(str, sys.version_info[:2])))")
+PYIMPL=$(python3 -c "import sys, platform; sys.stdout.write(platform.python_implementation())")
 SOURCE_DIR="$(pwd)"
 COV_DIR="${SOURCE_DIR}/coverage"
 export MALLOC_CHECK_=3
@@ -22,14 +22,14 @@ export PYTHONDEVMODE=1
 mkdir -p "${CCACHE_DIR}"
 mkdir -p "${COV_DIR}"
 
-python -m pip install pycairo flake8 pytest pytest-faulthandler coverage
+python3 -m pip install pycairo flake8 pytest pytest-faulthandler coverage
 
 export CFLAGS="-coverage -ftest-coverage -fprofile-arcs -Werror"
 
 # MESON
 /usr/bin/python3 -m pip install --user meson
 export PATH="${HOME}/.local/bin:${PATH}"
-export PKG_CONFIG_PATH="$(python -c 'import sys; sys.stdout.write(sys.prefix)')/lib/pkgconfig"
+export PKG_CONFIG_PATH="$(python3 -c 'import sys; sys.stdout.write(sys.prefix)')/lib/pkgconfig"
 
 meson _build -Dpython="$(which python)"
 ninja -C _build
@@ -37,7 +37,7 @@ xvfb-run -a meson test --suite pygobject --timeout-multiplier 4 -C _build -v
 rm -Rf _build
 
 # CODE QUALITY
-python -m flake8
+python3 -m flake8
 
 # DOCUMENTATION CHECKS
 if [[ "${PYVER}" == "2.7" ]] && [[ "${PYIMPL}" == "CPython" ]]; then
@@ -46,13 +46,13 @@ if [[ "${PYVER}" == "2.7" ]] && [[ "${PYIMPL}" == "CPython" ]]; then
 fi;
 
 # BUILD & TEST AGAIN USING SETUP.PY
-python setup.py build_tests
+python3 setup.py build_tests
 
 lcov --config-file .gitlab-ci/lcovrc --directory . --capture --initial --output-file \
     "${COV_DIR}/${CI_JOB_NAME}-baseline.lcov"
 
-xvfb-run -a python -m coverage run --context "${COV_KEY}" tests/runtests.py
-python -m coverage lcov -o "${COV_DIR}/${COV_KEY}.py.lcov"
+xvfb-run -a python3 -m coverage run --context "${COV_KEY}" tests/runtests.py
+python3 -m coverage lcov -o "${COV_DIR}/${COV_KEY}.py.lcov"
 
 # COLLECT GCOV COVERAGE
 lcov --config-file .gitlab-ci/lcovrc --directory . --capture --output-file \
