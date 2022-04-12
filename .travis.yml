@@ -12,7 +12,8 @@ install:
   - sudo pip3 install testresources
   - sudo apt install -y libgirepository1.0-dev
   - sudo apt install -y libcairo2 libcairo2-dev
-  - sudo pip3 install Ninja
+  - sudo pip3 install Ninja 
+  - sudo pip3 install glib-2.0==2.56.0
   - sudo apt-get -y install xvfb
   - sudo python3 setup.py install
   
